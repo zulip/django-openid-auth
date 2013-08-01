@@ -1,0 +1,21 @@
+#!/usr/bin/make -f
+
+%:
+	# Because of the makefile included in upstream we need to set the 
+	# buildsystem explicitly.
+	dh --buildsystem=python_distutils $@
+
+.PHONY: override_dh_auto_configure
+override_dh_auto_configure:
+	find -name "*.pyc" -o -name "*~" -delete
+	dh_auto_configure
+
+.PHONY: override_dh_auto_test
+override_dh_auto_test:
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+	set -e; \
+	for python in $(shell pyversions -r); do \
+	  PYTHONPATH="." $$python example_consumer/manage.py test --settings=example_consumer.settings django_openid_auth ; \
+	done
+endif
+

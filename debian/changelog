@@ -1,0 +1,77 @@
+django-openid-auth (0.5-1humbug1) wheezy; urgency=low
+
+  * Rebase on top of current Debian unstable package. Remaining changes:
+    - Modify views.py to pass along the openid_response to render_failure.
+      This allows us to handle "Unknown user" responses by creating a
+      PreregistrationUser.
+    - Patch to support Django 1.5 in the Humbug context.
+
+ -- Luke Faraone <lfaraone@zulip.com>  Thu, 01 Aug 2013 13:23:28 -0400
+
+django-openid-auth (0.5-1) unstable; urgency=low
+
+  [ Chris Johnston ]
+  * Replaces python-django-openid-auth to to remove the Ubuntu-only
+    package of a different name (LP: #1017462)
+
+  [ Jakub Wilk ]
+  * Use canonical URIs for Vcs-* fields.
+
+  [ Andrew Starr-Bochicchio ]
+  * New upstream release.
+   - Fixes FTBFS with Django 1.5 (Closes: #711366).
+  * Removed fix_settings_database.patch, fixed upstream.
+  * Bump Standards-Version to 3.9.4, no changes needed.
+  * debian/docs: Drop openid.txt, no longer exists.
+  * django1.5compat.patch: Update url tag in template to
+    fix test failure with Django 1.5.
+  * Add myself to Uploaders.
+
+ -- Andrew Starr-Bochicchio <asb@debian.org>  Mon, 24 Jun 2013 17:52:21 -0400
+
+django-openid-auth (0.4-1) unstable; urgency=low
+
+  * New upstream release.
+  * Lower dependency on python-django to (>= 1.1.2).
+  * Bump B-D on python-all to (>= 2.6) and XS-P-V to >= 2.6.
+  * Fix tests for django (>= 1.4) FTBFS (Closes: #669482).
+    - Add patch for Django 1.2 style DATABASE configuration
+    - Bump B-D on python-django to (>= 1.2) because of new configuration
+  * Fix DEP5 lintian format warnings.
+  * Fix DEP5 copyright line format in d/copyright.
+  * Make sure .pyc files are not used.
+  * Run wrap-and-sort.
+  * Change order of my name.
+  * Update DEP-5 URL to 1.0.
+  * Fix d/watch for HTTPS URLs.
+  * Bump Standards-Version to 3.9.3.
+  * Update years in d/copyright.
+  * Include openid.txt in documentation.
+
+ -- Michael Fladischer <FladischerMichael@fladi.at>  Wed, 27 Jun 2012 08:25:19 +0200
+
+django-openid-auth (0.3-2) unstable; urgency=low
+
+  * Upload to unstable.
+  * Set PMPT as maintainer and myself as uploader.
+  * Drop debian/pyversions in favour of XS-Python-Version.
+  * Update DEP5 format.
+
+ -- Fladischer Michael <FladischerMichael@fladi.at>  Mon, 07 Feb 2011 13:49:38 +0100
+
+django-openid-auth (0.3-1) experimental; urgency=low
+
+  * New upstream release.
+  * Update to Debian policy 3.9.1.
+  * Drop add_csrf_token_to_login_view patch as it has been integrated in
+    upstream.
+  * Fix regular expression in debian/watch.
+  * Bump dependency on python-django to (>= 1.2).
+
+ -- Fladischer Michael <FladischerMichael@fladi.at>  Fri, 03 Dec 2010 00:46:25 +0100
+
+django-openid-auth (0.2-1) unstable; urgency=low
+
+  * Initial release (Closes: #578623).
+
+ -- Fladischer Michael <FladischerMichael@fladi.at>  Wed, 09 Jun 2010 11:48:54 +0200

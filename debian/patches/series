@@ -1,0 +1,3 @@
+django1.5compat.patch
+pass_response_to_render_failure.patch
+fix-AUTH_USER_MODEL.patch

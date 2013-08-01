@@ -1,0 +1,3 @@
+version=3
+https://launchpad.net/django-openid-auth/+download \
+https?://launchpad.net/django-openid-auth/trunk/[\d\.]+/\+download/django-openid-auth-([\d\.]+)\.tar\.gz

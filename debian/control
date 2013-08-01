@@ -1,0 +1,36 @@
+Source: django-openid-auth
+Section: python
+Priority: optional
+Maintainer: Zulip Server Operations <devel@zulip.com>
+XSBC-Original-Maintainer: Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
+Uploaders: Michael Fladischer <FladischerMichael@fladi.at>,
+           Andrew Starr-Bochicchio <asb@debian.org>
+Build-Depends: debhelper (>= 7.3.7~),
+               python-all (>= 2.6),
+               python-django (>= 1.2),
+               python-openid,
+               python-support
+Standards-Version: 3.9.4
+XS-Python-Version: >= 2.6
+Homepage: https://launchpad.net/django-openid-auth
+Vcs-Svn: svn://anonscm.debian.org/python-modules/packages/django-openid-auth/trunk/
+Vcs-Browser: http://anonscm.debian.org/viewvc/python-modules/packages/django-openid-auth/trunk/
+
+Package: python-django-auth-openid
+Architecture: all
+Depends: python-django (>=1.1.2),
+         python-openid,
+         ${misc:Depends},
+         ${python:Depends}
+Replaces: python-django-openid-auth (<< 0.2+empty)
+Description: provides optional OpenID integration for Django
+ The django-auth-openid library can be used to add OpenID support
+ to Django applications.
+ It integrates with Django's built in authentication system, so most
+ applications require minimal changes to support OpenID login. The
+ library also includes the following features:
+  * Basic user details are transferred from the OpenID server via the
+    simple Registration extension.
+  * It can be configured to use a fixed OpenID server URL, for use in SSO.
+  * It supports the launchpad.net teams extension to get team membership
+    info.

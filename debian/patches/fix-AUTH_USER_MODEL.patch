@@ -1,0 +1,24 @@
+Author: Tim Abbott <tabbott@zulip.com>
+Forwarded: no
+Subject: Patch to support Django 1.5 in the Humbug context.
+Index: django-openid-auth-0.4/django_openid_auth/models.py
+===================================================================
+--- django-openid-auth-0.4.orig/django_openid_auth/models.py	2011-08-23 12:27:02.000000000 -0400
++++ django-openid-auth-0.4/django_openid_auth/models.py	2013-04-04 13:46:12.154004954 -0400
+@@ -27,7 +27,7 @@
+ # ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ # POSSIBILITY OF SUCH DAMAGE.
+ 
+-from django.contrib.auth.models import User
++from django.conf import settings
+ from django.db import models
+ 
+ 
+@@ -53,6 +53,6 @@
+ 
+ 
+ class UserOpenID(models.Model):
+-    user = models.ForeignKey(User)
++    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+     claimed_id = models.TextField(max_length=2047, unique=True)
+     display_id = models.TextField(max_length=2047)
