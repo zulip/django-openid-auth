@@ -123,6 +123,7 @@ def render_openid_request(request, openid_request, return_to, trust_root=None):
 
 def default_render_failure(request, message, status=403,
                            template_name='openid/failure.html',
+                           openid_response=None,
                            exception=None):
     """Render an error page to the user."""
     data = render_to_string(
@@ -270,7 +271,7 @@ def login_complete(request, redirect_field_name=REDIRECT_FIELD_NAME,
         try:
             user = authenticate(openid_response=openid_response)
         except DjangoOpenIDException, e:
-            return render_failure(request, e.message, exception=e)
+            return render_failure(request, e.message, exception=e, openid_response=openid_response)
             
         if user is not None:
             if user.is_active:
@@ -283,15 +284,16 @@ def login_complete(request, redirect_field_name=REDIRECT_FIELD_NAME,
 
                 return response
             else:
-                return render_failure(request, 'Disabled account')
+                return render_failure(request, 'Disabled account', openid_response=openid_response)
         else:
-            return render_failure(request, 'Unknown user')
+            return render_failure(request, 'Unknown user', openid_response=openid_response)
     elif openid_response.status == FAILURE:
         return render_failure(
             request, 'OpenID authentication failed: %s' %
-            openid_response.message)
+            openid_response.message,
+            openid_response=openid_response)
     elif openid_response.status == CANCEL:
-        return render_failure(request, 'Authentication cancelled')
+        return render_failure(request, 'Authentication cancelled', openid_response=openid_response)
     else:
         assert False, (
             "Unknown OpenID response type: %r" % openid_response.status)

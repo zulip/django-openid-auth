@@ -515,6 +515,7 @@ class RelyingPartyTests(TestCase):
         # Override the login_failure handler
         def mock_login_failure_handler(request, message, status=403,
                                        template_name=None,
+                                       openid_response=None,
                                        exception=None):
            self.assertTrue(isinstance(exception, MissingPhysicalMultiFactor))
            return HttpResponse('Test Failure Override', status=200)
@@ -923,6 +924,7 @@ class RelyingPartyTests(TestCase):
         # Override the login_failure handler
         def mock_login_failure_handler(request, message, status=403,
                                        template_name=None,
+                                       openid_response=None,
                                        exception=None):
            self.assertTrue(isinstance(exception, (RequiredAttributeNotReturned, MissingUsernameViolation)))
            return HttpResponse('Test Failure Override', status=200)
@@ -993,6 +995,7 @@ class RelyingPartyTests(TestCase):
         # Override the login_failure handler
         def mock_login_failure_handler(request, message, status=403,
                                        template_name=None,
+                                       openid_response=None,
                                        exception=None):
            self.assertTrue(isinstance(exception, DuplicateUsernameViolation))
            return HttpResponse('Test Failure Override', status=200)
